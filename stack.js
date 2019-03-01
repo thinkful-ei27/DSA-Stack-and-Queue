@@ -7,7 +7,7 @@ class Stack {
 
   pop() {
     if (this.top === null) {
-      console.log("Null, No Pop")
+      console.log('Null, No Pop');
       return;
     }
     const node = this.top;
@@ -55,33 +55,49 @@ function matchParenthese(str) {
   let posCount = 0;
   for (let i = 0; i < str.length; i++) {
     if (str[i] === '(') {
-     strStack.push(str[i]);
+      strStack.push(str[i]);
     }
 
     if (str[i] === ')') {
       strStack.push(str[i]);
     }
-
   }
-  let pop = ''
+  let pop = '';
   while (strStack.top !== null) {
-    pop = strStack.pop()
+    pop = strStack.pop();
     if (pop === '(') {
-      parenCount++
+      parenCount++;
     }
     if (pop === ')') {
-      parenCount--
+      parenCount--;
     }
     posCount++;
   }
 
   if (parenCount > 0) {
-    console.log("You have too many (")
+    console.log('You have too many (');
   } else if (parenCount < 0) {
-      console.log("You have too many )")
-    }
-    return (parenCount === 0)
+    console.log('You have too many )');
   }
-console.log(matchParenthese("(()))"));
+  return parenCount === 0;
+}
 
-module.exports = { Stack, peek, display };
+function sortStack(stack) {
+  let sortedStack = new Stack();
+  let temp = stack.pop();
+  sortedStack.push(temp);
+
+  while (stack.top !== null) {
+    temp = stack.pop();
+    console.log(peek(sortedStack).data);
+    if (temp < peek(sortedStack).data) {
+      console.log('hello');
+      sortedStack.push(temp);
+    } else {
+    }
+  }
+  display(sortedStack);
+  return sortedStack;
+}
+
+module.exports = { Stack, peek, display, sortStack };
