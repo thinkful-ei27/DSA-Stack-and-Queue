@@ -7,7 +7,7 @@ class Stack {
 
   pop() {
     const node = this.top;
-    this.top = node.next
+    this.top = node.next;
     return node.data;
   }
 
@@ -17,18 +17,32 @@ class Stack {
       return this.top;
     }
 
-    const node = new _Node(data, this.top)
+    const node = new _Node(data, this.top);
     this.top = node;
   }
 }
 
 function peek(stack) {
-  return stack.top
+  return stack.top;
 }
 
 function display(stack) {
-  console.log(JSON.stringify(stack, null, 2))
+  console.log(JSON.stringify(stack, null, 2));
 }
 
+function is_palindrome(s) {
+  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+  const strStack = new Stack();
+  let revStr = '';
+  for (let i = 0; i < s.length; i++) {
+    strStack.push(s[i]);
+  }
 
-module.exports = {Stack, peek, display}
+  while (strStack.top !== null) {
+    revStr += strStack.pop();
+  }
+
+  return revStr === s;
+}
+
+module.exports = { Stack, peek, display };
