@@ -6,6 +6,10 @@ class Stack {
   }
 
   pop() {
+    if (this.top === null) {
+      console.log("Null, No Pop")
+      return;
+    }
     const node = this.top;
     this.top = node.next;
     return node.data;
@@ -44,5 +48,40 @@ function is_palindrome(s) {
 
   return revStr === s;
 }
+
+function matchParenthese(str) {
+  const strStack = new Stack();
+  let parenCount = 0;
+  let posCount = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === '(') {
+     strStack.push(str[i]);
+    }
+
+    if (str[i] === ')') {
+      strStack.push(str[i]);
+    }
+
+  }
+  let pop = ''
+  while (strStack.top !== null) {
+    pop = strStack.pop()
+    if (pop === '(') {
+      parenCount++
+    }
+    if (pop === ')') {
+      parenCount--
+    }
+    posCount++;
+  }
+
+  if (parenCount > 0) {
+    console.log("You have too many (")
+  } else if (parenCount < 0) {
+      console.log("You have too many )")
+    }
+    return (parenCount === 0)
+  }
+console.log(matchParenthese("(()))"));
 
 module.exports = { Stack, peek, display };
