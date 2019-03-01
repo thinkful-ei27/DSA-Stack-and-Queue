@@ -83,21 +83,29 @@ function matchParenthese(str) {
 }
 
 function sortStack(stack) {
-  let sortedStack = new Stack();
-  let temp = stack.pop();
-  sortedStack.push(temp);
+   let sortedStack = new Stack();
+   let temp1 = stack.pop();
+   sortedStack.push(temp1);
 
-  while (stack.top !== null) {
-    temp = stack.pop();
-    console.log(peek(sortedStack).data);
-    if (temp < peek(sortedStack).data) {
-      console.log('hello');
-      sortedStack.push(temp);
-    } else {
-    }
+   while (stack.top !== null) {
+    temp1 = stack.pop();
+     if (temp1 < peek(sortedStack).data) {
+      sortedStack.push(temp1);
+     } else {
+      let temp2 = sortedStack.pop();
+      if (temp2 > temp1) {
+        
+      }
+      // stack.push(sortedStack.pop())
+      
   }
-  display(sortedStack);
-  return sortedStack;
+
+   display(stack);
+  // display(stack)
+  // return sortedStack;
+
 }
+}
+
 
 module.exports = { Stack, peek, display, sortStack };
